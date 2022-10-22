@@ -7,15 +7,32 @@ include_once "Car.php";
 // establecer fecha 
 date_default_timezone_set('america/bogota');
 
-$car = new Car();
-$car->id = null;
-$car->nombre = "118i F20 Sport Line";
-$car->marca = "BMW";
-$car->modelo = "5P MT";
-$car->pais = "Alemania";
-$car->fechaCreate = date("Y-m-d");
-$car->fechaUpdate = date("Y-m-d");
-$car->create();
+// $car = new Car();
+// $car->id = null;
+// $car->nombre = "118i F20 Sport Line";
+// $car->marca = "BMW";
+// $car->modelo = "5P MT";
+// $car->pais = "Alemania";
+// $car->fechaCreate = date("Y-m-d");
+// $car->fechaUpdate = date("Y-m-d");
+// $car->create();
+// echo (date("Y-m-d"));
 
-echo (date("Y-m-d"));
+
+// UPDATE
+// $car = Car::getCarById(7);
+// //var_dump($car);
+
+// $car->pais = "Colombia";
+// $car->update();
+
+// DELETE
+// $car = Car::getCarById(8);
+// $car->delete();
+
+//READ
+
+$cars = Car::all();
+var_dump($cars);
+
 ?>
