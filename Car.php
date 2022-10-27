@@ -46,8 +46,8 @@ class Car extends Conexion{
     // Update
     public function update(){
         $this->conectar();
-        $pre = mysqli_prepare($this->con, "UPDATE CAR SET pais=? WHERE id=?");
-        $pre->bind_param("si", $this->pais, $this->id);
+        $pre = mysqli_prepare($this->con, "UPDATE CAR SET nombre=?, modelo=?, marca=?, pais=?, fechaUpdate=? WHERE id=?");
+        $pre->bind_param("sssssi", $this->nombre, $this->modelo, $this->marca, $this->pais, $this->fechaUpdate, $this->id);
         $pre->execute();
     }
 

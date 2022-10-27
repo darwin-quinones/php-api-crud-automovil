@@ -1,3 +1,4 @@
+
 <?php
 
 include_once "Car.php";
@@ -45,11 +46,9 @@ function getCarById($idCard){
 
 function deleteCar($idCard){
     $car = Car::getCarById($idCard);
-    if(is_null($car) != 1){
-        $car->delete();
-        exit();
-    }else{  echo json_encode(["No data found"=>0]); }
-    
+    $car->delete();
+    echo json_encode(["success"=>1]);
+    exit();
 }
 
 // crear un nuevo Car
@@ -64,7 +63,7 @@ function createCar($data){
     $car->modelo = $data->modelo;
     $car->pais = $data->pais;
     $car->fechaCreate = date("Y-m-d");
-    $car->fechaUpdate = date("Y-m-d");
+    // $car->fechaUpdate = date("Y-m-d");
     $car->create();
     echo json_encode(["success"=>1]);
     exit();
@@ -82,45 +81,14 @@ function updateCar($data){
     $car->pais = $data->pais;
     $car->fechaUpdate = date("Y-m-d");
     $car->update();
-
+    echo json_encode(["success"=>1]);
+    exit();
 }
 
 $cars = Car::all();
-if(is_null($cars) != 1){
+if(!empty($cars)){
     echo json_encode($cars);
     exit();
-}else{  echo json_encode(["No data found"=>0]); }
-
-
-
-
-
-// $car = new Car();
-// $car->id = null;
-// $car->nombre = "118i F20 Sport Line";
-// $car->marca = "BMW";
-// $car->modelo = "5P MT";
-// $car->pais = "Alemania";
-// $car->fechaCreate = date("Y-m-d");
-// $car->fechaUpdate = date("Y-m-d");
-// $car->create();
-// echo (date("Y-m-d"));
-
-
-// UPDATE
-// $car = Car::getCarById(7);
-// var_dump($car);
-
-// $car->pais = "Colombia";
-// $car->update();
-
-// DELETE
-// $car = Car::getCarById(8);
-// $car->delete();
-
-//READ
-
-// $cars = Car::all();
-// var_dump($cars);
+}else{  echo json_encode(["error"=>"no data found"]); }
 
 ?>
